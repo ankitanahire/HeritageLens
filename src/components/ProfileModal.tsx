@@ -237,9 +237,9 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose }) =
                     </div>
 
                     <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', color: '#c9bcaf', marginBottom: '0.35rem' }}>
-                      <span>📅 {b.date}</span>
-                      <span>⏰ {b.time}</span>
-                      <span>👥 {b.guests} guests</span>
+                      <span>Date: {b.date}</span>
+                      <span>Time: {b.time}</span>
+                      <span>Guests: {b.guests}</span>
                     </div>
 
                     <div style={{ fontSize: '0.75rem', color: '#8e8073', fontFamily: 'monospace' }}>

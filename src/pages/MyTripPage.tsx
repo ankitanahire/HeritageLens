@@ -8,11 +8,14 @@ import {
   Plus,
   Sparkles,
   Map,
-  Check
+  Check,
+  CalendarDays,
+  Heart
 } from 'lucide-react';
 import { useSaved } from '../context/SavedContext';
 import { MONUMENTS } from '../data/monuments';
 import { EXPERIENCES } from '../data/experiences';
+import { WALKS } from '../data/walks';
 import { HeritageCard } from '../components/HeritageCard';
 import { ExperienceCard } from '../components/ExperienceCard';
 import type { ItineraryItem } from '../types';
@@ -20,6 +23,26 @@ import type { ItineraryItem } from '../types';
 interface MyTripPageProps {
   onOpenBuildTrip: () => void;
 }
+
+const walkStops = WALKS.flatMap((walk) => walk.stops);
+
+const getItineraryImage = (item: ItineraryItem): string => {
+  if (item.type === 'monument') {
+    return MONUMENTS.find((monument) => monument.id === item.placeId)?.heroImage
+      ?? walkStops.find((stop) => stop.id === item.placeId)?.image
+      ?? item.image;
+  }
+
+  if (item.type === 'experience') {
+    return EXPERIENCES.find((experience) => experience.id === item.placeId)?.image ?? item.image;
+  }
+
+  if (item.type === 'walk') {
+    return WALKS.find((walk) => walk.id === item.placeId)?.image ?? item.image;
+  }
+
+  return item.image;
+};
 
 export const MyTripPage: React.FC<MyTripPageProps> = ({ onOpenBuildTrip }) => {
   const {
@@ -65,7 +88,7 @@ export const MyTripPage: React.FC<MyTripPageProps> = ({ onOpenBuildTrip }) => {
   };
 
   return (
-    <div className="container" style={{ paddingTop: '2.5rem', paddingBottom: '5rem' }}>
+    <div className="container my-trip-page" style={{ paddingTop: '2.5rem', paddingBottom: '5rem' }}>
       {/* Page Header (Screen 7 from Reference) */}
       <div
         style={{
@@ -180,7 +203,7 @@ export const MyTripPage: React.FC<MyTripPageProps> = ({ onOpenBuildTrip }) => {
           TAB 1: PLANNED ITINERARY (Screen 7 from Reference)
           ================================================================= */}
       {activeTab === 'itinerary' && (
-        <div style={{ maxWidth: '840px', margin: '0 auto' }}>
+        <div className="my-trip-itinerary-content">
           {/* Trip Header Box */}
           <div
             style={{
@@ -262,7 +285,7 @@ export const MyTripPage: React.FC<MyTripPageProps> = ({ onOpenBuildTrip }) => {
                 textAlign: 'center'
               }}
             >
-              <div style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#8e8073' }}>📅</div>
+              <CalendarDays size={40} color="#8e8073" style={{ marginBottom: '1rem' }} />
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: '#f5eee6', marginBottom: '0.5rem' }}>
                 Your Itinerary is Currently Empty
               </h3>
@@ -279,7 +302,7 @@ export const MyTripPage: React.FC<MyTripPageProps> = ({ onOpenBuildTrip }) => {
               </div>
             </div>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div className="my-trip-itinerary-grid">
               {itinerary.map((item, index) => (
                 <div
                   key={item.id}
@@ -293,7 +316,7 @@ export const MyTripPage: React.FC<MyTripPageProps> = ({ onOpenBuildTrip }) => {
                     gap: '1.25rem',
                     transition: 'all 0.2s ease'
                   }}
-                  className="heritage-card"
+                  className="heritage-card my-trip-itinerary-card"
                 >
                   {/* Time Badge */}
                   <div
@@ -322,11 +345,9 @@ export const MyTripPage: React.FC<MyTripPageProps> = ({ onOpenBuildTrip }) => {
 
                   {/* Thumbnail Image */}
                   <img
-                    src={item.image}
+                    src={getItineraryImage(item)}
                     alt={item.title}
                     style={{
-                      width: '72px',
-                      height: '72px',
                       borderRadius: '6px',
                       objectFit: 'cover',
                       flexShrink: 0
@@ -452,7 +473,7 @@ export const MyTripPage: React.FC<MyTripPageProps> = ({ onOpenBuildTrip }) => {
                 textAlign: 'center'
               }}
             >
-              <div style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#8e8073' }}>❤️</div>
+              <Heart size={40} color="#8e8073" style={{ marginBottom: '1rem' }} />
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: '#f5eee6', marginBottom: '0.5rem' }}>
                 You Have Not Saved Any Places Yet
               </h3>

@@ -88,7 +88,7 @@ export const MONUMENTS: Monument[] = [
     heroImage: '/images/monuments/vishrambaug-wada.png',
     gallery: [
       '/images/monuments/vishrambaug-wada.png',
-      '/images/walks/wada-trail.jpg'
+      '/images/walks/wada-trail.png'
     ],
     history: {
       builtYear: '1807 CE',
@@ -103,7 +103,7 @@ export const MONUMENTS: Monument[] = [
       ]
     },
     thenNow: {
-      thenImage: '/images/walks/wada-trail.jpg',
+      thenImage: '/images/walks/wada-trail.png',
       nowImage: '/images/monuments/vishrambaug-wada.png',
       thenLabel: 'Historic Woodwork Detail',
       nowLabel: 'Restored Exterior Facade',
@@ -259,9 +259,9 @@ export const MONUMENTS: Monument[] = [
     estimatedTime: '30 – 45 mins',
     latitude: 18.5208,
     longitude: 73.8576,
-    heroImage: '/images/monuments/kasba-ganapati.jpg',
+    heroImage: '/images/monuments/kasba-ganpati.png',
     gallery: [
-      '/images/monuments/kasba-ganapati.jpg'
+      '/images/monuments/kasba-ganpati.png'
     ],
     history: {
       builtYear: '1630 CE',
@@ -366,9 +366,9 @@ export const MONUMENTS: Monument[] = [
     estimatedTime: '3 – 4 hours',
     latitude: 18.3663,
     longitude: 73.7558,
-    heroImage: '/images/monuments/sinhagad-fort.jpg',
+    heroImage: '/images/monuments/sinhagad-fort.png',
     gallery: [
-      '/images/monuments/sinhagad-fort.jpg'
+      '/images/monuments/sinhagad-fort.png'
     ],
     history: {
       builtYear: 'Circa 14th century / Fortified 1670',

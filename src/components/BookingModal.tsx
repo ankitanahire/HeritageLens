@@ -496,10 +496,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', fontSize: '0.825rem', color: '#c9bcaf', marginTop: '0.65rem' }}>
-                  <div>📅 {selectedSlot.date}</div>
-                  <div>⏰ {selectedSlot.time}</div>
-                  <div>👥 {guestCount} Guests</div>
-                  <div>💰 ₹{totalPrice} (Confirmed)</div>
+                  <div>Date: {selectedSlot.date}</div>
+                  <div>Time: {selectedSlot.time}</div>
+                  <div>Guests: {guestCount}</div>
+                  <div>Total: ₹{totalPrice} (Confirmed)</div>
                 </div>
               </div>
 

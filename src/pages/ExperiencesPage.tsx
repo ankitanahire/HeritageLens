@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { EXPERIENCES } from '../data/experiences';
-import { ExperienceCard } from '../components/ExperienceCard';
 import { BookingModal } from '../components/BookingModal';
+import { FullScreenCarousel } from '../components/FullScreenCarousel';
+import { useSaved } from '../context/SavedContext';
 import type { Experience } from '../types';
 
 export const ExperiencesPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [bookingExperience, setBookingExperience] = useState<Experience | null>(null);
+  const navigate = useNavigate();
+  const { isSaved, toggleSave } = useSaved();
 
   const categories = ['All', 'Food', 'Art', 'Culture', 'Music', 'Workshops'];
 
@@ -15,66 +19,43 @@ export const ExperiencesPage: React.FC = () => {
       ? EXPERIENCES
       : EXPERIENCES.filter((e) => e.category.toLowerCase() === selectedCategory.toLowerCase());
 
+  const slides = filteredExperiences.map((experience) => ({
+    id: experience.id,
+    title: experience.title,
+    category: experience.category,
+    image: experience.image,
+    description: experience.description,
+    badge: experience.badge,
+    metadata: [experience.duration, experience.priceFormatted, experience.location.split(',')[0]],
+    primaryActionLabel: 'Book Now',
+    onPrimaryAction: () => setBookingExperience(experience),
+    secondaryActionLabel: 'View Experience',
+    onSecondaryAction: () => navigate(`/experiences/${experience.id}`),
+    isSaved: isSaved(experience.id),
+    onToggleSave: () => toggleSave(experience.id, experience.title)
+  }));
+
   return (
-    <div className="container" style={{ paddingTop: '2.5rem', paddingBottom: '5rem' }}>
-      {/* Page Header */}
-      <div style={{ marginBottom: '2.5rem' }}>
-        <h1
-          style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(2rem, 4vw, 2.75rem)',
-            color: '#f5eee6',
-            marginBottom: '0.65rem'
-          }}
-        >
-          Local Experiences & Culture
-        </h1>
-        <p style={{ color: '#c9bcaf', fontSize: '1.05rem', maxWidth: '640px' }}>
-          Immerse yourself in authentic Pune traditions: classical music baithaks, artisan workshops, and heritage culinary feasts.
-        </p>
-      </div>
-
-      {/* Category Pills */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem', marginBottom: '2.5rem' }}>
-        {categories.map((cat) => {
-          const isSelected = selectedCategory === cat;
-          return (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              style={{
-                padding: '0.5rem 1.25rem',
-                borderRadius: '999px',
-                backgroundColor: isSelected ? '#c28b5b' : 'rgba(39, 30, 26, 0.8)',
-                color: isSelected ? '#15100d' : '#e2d7c9',
-                border: isSelected ? '1px solid #c28b5b' : '1px solid rgba(194, 139, 91, 0.25)',
-                fontWeight: isSelected ? 700 : 500,
-                fontSize: '0.875rem',
-                transition: 'all 0.15s ease'
-              }}
-            >
-              {cat}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Experiences Grid */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-          gap: '2rem'
-        }}
-      >
-        {filteredExperiences.map((exp) => (
-          <ExperienceCard
-            key={exp.id}
-            experience={exp}
-            onBookNow={(selected) => setBookingExperience(selected)}
-          />
-        ))}
-      </div>
+    <>
+      <FullScreenCarousel
+        eyebrow="Pune Experiences"
+        slides={slides}
+        toolbar={(
+          <div className="full-screen-showcase__filters" role="group" aria-label="Filter experiences">
+            {categories.map((category) => (
+              <button
+                key={category}
+                type="button"
+                className={`full-screen-showcase__filter${selectedCategory === category ? ' is-active' : ''}`}
+                aria-pressed={selectedCategory === category}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        )}
+      />
 
       {/* Booking Modal */}
       {bookingExperience && (
@@ -84,6 +65,6 @@ export const ExperiencesPage: React.FC = () => {
           onClose={() => setBookingExperience(null)}
         />
       )}
-    </div>
+    </>
   );
 };

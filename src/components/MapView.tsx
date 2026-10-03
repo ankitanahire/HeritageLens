@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { GoogleMap, useJsApiLoader, Marker, Polyline, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { GoogleMap, useJsApiLoader, Marker, Polyline, DirectionsRenderer } from '@react-google-maps/api';
 import type { Monument, Walk, Experience } from '../types';
 
 interface MapViewProps {
@@ -42,6 +42,16 @@ export const MapView: React.FC<MapViewProps> = ({
     id: 'google-map-script',
     googleMapsApiKey: import.meta.env.VITE_MAP_API_KEY || ''
   });
+
+  const walkRoutePaths = useMemo(
+    () => walks
+      .filter((walk) => walk.routeCoordinates && walk.routeCoordinates.length > 1)
+      .map((walk) => ({
+        id: walk.id,
+        path: walk.routeCoordinates.map(([lat, lng]) => ({ lat, lng }))
+      })),
+    [walks]
+  );
 
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [directionsResponse, setDirectionsResponse] = useState<google.maps.DirectionsResult | null>(null);
@@ -282,18 +292,16 @@ export const MapView: React.FC<MapViewProps> = ({
           ));
         })}
 
-        {showWalks && walks.map((w) => (
-           w.routeCoordinates && w.routeCoordinates.length > 1 ? (
-            <Polyline
-              key={`route-${w.id}`}
-              path={w.routeCoordinates.map((c: any) => ({ lat: c[0], lng: c[1] }))}
-              options={{
-                strokeColor: '#5fa874',
-                strokeWeight: 4,
-                strokeOpacity: 0.8
-              }}
-            />
-          ) : null
+        {showWalks && walkRoutePaths.map(({ id, path }) => (
+          <Polyline
+            key={`route-${id}`}
+            path={path}
+            options={{
+              strokeColor: '#5fa874',
+              strokeWeight: 4,
+              strokeOpacity: 0.8
+            }}
+          />
         ))}
 
         {showExperiences && experiences.map((e) => (

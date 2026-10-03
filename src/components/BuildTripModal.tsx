@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, Sparkles, ArrowRight } from 'lucide-react';
+import { X, Sparkles, ArrowRight, Check } from 'lucide-react';
 import { useSaved } from '../context/SavedContext';
 import type { ItineraryItem } from '../types';
 
@@ -351,7 +351,7 @@ export const BuildTripModal: React.FC<BuildTripModalProps> = ({ isOpen, onClose 
                           transition: 'all 0.15s ease'
                         }}
                       >
-                        {isSelected && '✓ '}
+                        {isSelected && <Check size={14} aria-hidden="true" />}
                         {interest}
                       </button>
                     );

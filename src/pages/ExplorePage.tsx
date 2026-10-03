@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, RefreshCw } from 'lucide-react';
+import { Search, RefreshCw, MapPin } from 'lucide-react';
 import { MONUMENTS } from '../data/monuments';
 import { HeritageCard } from '../components/HeritageCard';
 
@@ -297,7 +297,7 @@ export const ExplorePage: React.FC = () => {
             textAlign: 'center'
           }}
         >
-          <div style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#8e8073' }}>🏛️</div>
+          <MapPin size={40} color="#8e8073" style={{ marginBottom: '1rem' }} />
           <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: '#f5eee6', marginBottom: '0.5rem' }}>
             No heritage places matched your filters
           </h3>

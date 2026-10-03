@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
   ArrowLeft,
-  Heart,
   Clock,
   Ticket,
   Hourglass,
   MapPin,
-  Navigation,
-  Headphones,
   SlidersHorizontal,
   Plus,
   ExternalLink
@@ -17,6 +14,7 @@ import { MONUMENTS } from '../data/monuments';
 import { EXPERIENCES } from '../data/experiences';
 import { useSaved } from '../context/SavedContext';
 import { useAudio } from '../context/AudioContext';
+import { FullScreenCarousel } from '../components/FullScreenCarousel';
 import { ThenNowSlider } from '../components/ThenNowSlider';
 import { AudioPlayer } from '../components/AudioPlayer';
 import { ExperienceCard } from '../components/ExperienceCard';
@@ -28,7 +26,6 @@ export const MonumentDetailPage: React.FC = () => {
   const { playMonument } = useAudio();
 
   const monument = MONUMENTS.find((m) => m.id === id) || MONUMENTS[0];
-  const [activeImage, setActiveImage] = useState<string>(monument.heroImage);
 
   const saved = isSaved(monument.id);
 
@@ -41,6 +38,11 @@ export const MonumentDetailPage: React.FC = () => {
     // Open Google Maps directions in new tab
     const url = `https://www.google.com/maps/dir/?api=1&destination=${monument.latitude},${monument.longitude}`;
     window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleListenToStory = () => {
+    playMonument(monument.id, 0);
+    document.getElementById('audio-story')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleAddToItinerary = () => {
@@ -58,38 +60,49 @@ export const MonumentDetailPage: React.FC = () => {
     });
   };
 
+  const galleryImages = Array.from(new Set([monument.heroImage, ...monument.gallery]));
+  const gallerySlides = galleryImages.map((image, index) => ({
+    id: `${monument.id}-photo-${index}`,
+    ariaLabel: `${monument.name}, photograph ${index + 1}`,
+    title: monument.name,
+    category: monument.category,
+    image,
+    description: monument.shortDescription,
+    badge: monument.history.builtYear,
+    metadata: [monument.area, monument.estimatedTime],
+    primaryActionLabel: 'Get Directions',
+    onPrimaryAction: handleGetDirections,
+    secondaryActionLabel: 'Listen to the Story',
+    onSecondaryAction: handleListenToStory,
+    isSaved: saved,
+    onToggleSave: () => toggleSave(monument.id, monument.name)
+  }));
+
   return (
-    <div className="container" style={{ paddingTop: '2rem', paddingBottom: '5rem' }}>
-      {/* Back Button */}
-      <Link
-        to="/explore"
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          color: '#c28b5b',
-          fontWeight: 600,
-          fontSize: '0.9rem',
-          marginBottom: '2rem',
-          transition: 'color 0.2s'
-        }}
-      >
-        <ArrowLeft size={18} />
-        <span>Back to Explore</span>
-      </Link>
+    <>
+      <FullScreenCarousel
+        key={monument.id}
+        eyebrow="Pune Heritage"
+        slides={gallerySlides}
+        toolbar={(
+          <Link to="/explore" className="full-screen-showcase__back">
+            <ArrowLeft size={17} />
+            Back to Explore
+          </Link>
+        )}
+      />
 
       {/* Main 2-Column Monument Section (Screen 4 from Reference) */}
       <div
+        className="container"
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-          gap: '3rem',
-          alignItems: 'flex-start',
-          marginBottom: '4rem'
+          maxWidth: '1040px',
+          paddingTop: '3rem',
+          paddingBottom: '4rem'
         }}
       >
         {/* Left Column: Monument Details & Actions */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem', marginBottom: '4rem' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
               <span className="badge badge-heritage">{monument.category}</span>
@@ -98,17 +111,17 @@ export const MonumentDetailPage: React.FC = () => {
               </span>
             </div>
 
-            <h1
+            <h2
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(2.25rem, 4.5vw, 3.25rem)',
+                fontSize: '2rem',
                 color: '#f5eee6',
-                lineHeight: 1.15,
+                lineHeight: 1.2,
                 marginBottom: '1rem'
               }}
             >
-              {monument.name}
-            </h1>
+              Plan your visit
+            </h2>
 
             <p style={{ color: '#c9bcaf', fontSize: '1.05rem', lineHeight: 1.65 }}>
               {monument.description}
@@ -171,7 +184,7 @@ export const MonumentDetailPage: React.FC = () => {
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-              {/* 📸 Then & Now */}
+              {/* Then & Now */}
               <button
                 onClick={() => {
                   const el = document.getElementById('then-now');
@@ -181,62 +194,19 @@ export const MonumentDetailPage: React.FC = () => {
                 style={{ padding: '0.75rem 1.15rem' }}
               >
                 <SlidersHorizontal size={16} color="#c28b5b" />
-                <span>📸 Then & Now</span>
+                <span>Then & Now</span>
               </button>
 
-              {/* 🎧 Listen to the Story */}
-              <button
-                onClick={() => {
-                  playMonument(monument.id, 0);
-                  const el = document.getElementById('audio-story');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="btn-secondary"
-                style={{ padding: '0.75rem 1.15rem' }}
-              >
-                <Headphones size={16} color="#c28b5b" />
-                <span>🎧 Listen to the Story</span>
-              </button>
-
-              {/* 🗺️ Add to Heritage Walk */}
+              {/* Add to Heritage Walk */}
               <button
                 onClick={handleAddToItinerary}
                 className="btn-secondary"
                 style={{ padding: '0.75rem 1.15rem' }}
               >
                 <Plus size={16} color="#c28b5b" />
-                <span>🗺️ Add to Heritage Walk</span>
+                <span>Add to Heritage Walk</span>
               </button>
 
-              {/* ❤️ Save */}
-              <button
-                onClick={() => toggleSave(monument.id, monument.name)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  padding: '0.75rem 1.15rem',
-                  borderRadius: '6px',
-                  backgroundColor: saved ? 'rgba(194, 139, 91, 0.25)' : 'rgba(39, 30, 26, 0.8)',
-                  border: saved ? '1px solid #c28b5b' : '1px solid rgba(194, 139, 91, 0.25)',
-                  color: saved ? '#d89e68' : '#f5eee6',
-                  fontWeight: 600,
-                  fontSize: '0.875rem'
-                }}
-              >
-                <Heart size={16} fill={saved ? '#c28b5b' : 'none'} color={saved ? '#c28b5b' : '#f5eee6'} />
-                <span>{saved ? '❤️ Saved' : '❤️ Save'}</span>
-              </button>
-
-              {/* 📍 Get Directions */}
-              <button
-                onClick={handleGetDirections}
-                className="btn-primary"
-                style={{ padding: '0.75rem 1.25rem' }}
-              >
-                <Navigation size={16} />
-                <span>📍 Get Directions</span>
-              </button>
             </div>
           </div>
 
@@ -294,57 +264,6 @@ export const MonumentDetailPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Column: Hero Image with Vertical Gallery Selectors (Screen 4 Reference) */}
-        <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}>
-          {/* Main Large Photograph */}
-          <div
-            style={{
-              width: '100%',
-              aspectRatio: '4 / 3',
-              borderRadius: '12px',
-              overflow: 'hidden',
-              backgroundColor: '#15100d',
-              border: '1px solid rgba(194, 139, 91, 0.25)',
-              boxShadow: 'var(--shadow-lg)'
-            }}
-          >
-            <img
-              src={activeImage}
-              alt={monument.name}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover'
-              }}
-            />
-          </div>
-
-          {/* Gallery Thumbnails List */}
-          <div style={{ display: 'flex', gap: '0.75rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
-            {monument.gallery.map((imgUrl, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveImage(imgUrl)}
-                style={{
-                  width: '90px',
-                  height: '65px',
-                  borderRadius: '6px',
-                  overflow: 'hidden',
-                  border: activeImage === imgUrl ? '2px solid #c28b5b' : '1px solid rgba(194, 139, 91, 0.2)',
-                  opacity: activeImage === imgUrl ? 1 : 0.65,
-                  transition: 'all 0.2s ease',
-                  flexShrink: 0
-                }}
-              >
-                <img
-                  src={imgUrl}
-                  alt={`Thumbnail ${idx + 1}`}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* =================================================================
@@ -502,6 +421,6 @@ export const MonumentDetailPage: React.FC = () => {
           </section>
         )}
       </div>
-    </div>
+    </>
   );
 };

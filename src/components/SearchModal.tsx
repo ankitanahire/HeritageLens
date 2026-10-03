@@ -198,7 +198,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   color: '#8e8073'
                 }}
               >
-                🔍
+                <Search size={32} />
               </div>
               <h4 style={{ color: '#f5eee6', fontSize: '1.1rem', marginBottom: '0.35rem' }}>
                 No results found for "{query}"

@@ -56,7 +56,7 @@ export const WALKS: Walk[] = [
         latitude: 18.5208,
         longitude: 73.8576,
         monumentId: 'kasba-ganapati',
-        image: '/images/monuments/kasba-ganapati.jpg',
+        image: '/images/monuments/kasba-ganpati.png',
         storyChapter: 'The Gramdaivat is the first deity to lead Pune’s iconic Ganesh Visarjan procession.'
       },
       {
@@ -147,7 +147,7 @@ export const WALKS: Walk[] = [
     duration: '3 hrs',
     difficulty: 'Moderate',
     description: 'Visit iconic wadas and learn about the Peshwas and early social reformers. Discover courtyards with hidden cisterns, timber colonnades, and historic meeting rooms.',
-    image: '/images/walks/wada-trail.jpg',
+    image: '/images/walks/wada-trail.png',
     startPoint: 'Vishrambaug Wada',
     endPoint: 'Bhide Wada',
     routeCoordinates: [
@@ -178,7 +178,7 @@ export const WALKS: Walk[] = [
         description: 'Constructed in 1780 by Nana Phadnavis, the chief administrator of the Peshwas, famed for its cypress timber hall and fortress-like austerity.',
         latitude: 18.5175,
         longitude: 73.8540,
-        image: '/images/walks/wada-trail.jpg'
+        image: '/images/walks/wada-trail.png'
       },
       {
         id: 'wt-3',

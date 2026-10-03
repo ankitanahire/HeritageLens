@@ -5,7 +5,8 @@ import {
   Clock,
   Heart,
   Calendar,
-  ShieldCheck
+  ShieldCheck,
+  Check
 } from 'lucide-react';
 import { EXPERIENCES } from '../data/experiences';
 import { useSaved } from '../context/SavedContext';
@@ -118,7 +119,7 @@ export const ExperienceDetailPage: React.FC = () => {
                     color: '#c9bcaf'
                   }}
                 >
-                  <span style={{ color: '#5fa874', fontWeight: 800 }}>✓</span>
+                  <Check size={16} color="#5fa874" aria-hidden="true" />
                   <span>{inc}</span>
                 </li>
               ))}

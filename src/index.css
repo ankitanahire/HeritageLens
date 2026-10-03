@@ -132,6 +132,306 @@ img {
   }
 }
 
+.my-trip-page {
+  max-width: 1680px;
+}
+
+.my-trip-itinerary-content {
+  width: 100%;
+}
+
+.my-trip-itinerary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.my-trip-itinerary-card {
+  flex-direction: row !important;
+  min-width: 0;
+}
+
+.my-trip-itinerary-card > img {
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+}
+
+.full-screen-showcase {
+  position: relative;
+  min-height: calc(100svh - 4.5rem);
+  display: flex;
+  overflow: hidden;
+  isolation: isolate;
+  background: #15100d;
+  color: #f5eee6;
+}
+
+.full-screen-showcase__background,
+.full-screen-showcase__overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.full-screen-showcase__background {
+  z-index: -1;
+}
+
+.full-screen-showcase__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: showcase-image-enter 500ms ease both;
+}
+
+.full-screen-showcase__overlay {
+  background:
+    linear-gradient(90deg, rgba(15, 11, 9, 0.92) 0%, rgba(15, 11, 9, 0.68) 38%, rgba(15, 11, 9, 0.08) 100%),
+    linear-gradient(0deg, rgba(15, 11, 9, 0.78) 0%, transparent 52%);
+}
+
+.full-screen-showcase__layout {
+  width: min(100%, 1680px);
+  margin: 0 auto;
+  padding: 2.5rem 3rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.full-screen-showcase__copy {
+  max-width: 760px;
+  margin: auto 0;
+  animation: showcase-copy-enter 450ms ease both;
+}
+
+.full-screen-showcase__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.full-screen-showcase__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  color: #e6b27f;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 160ms ease;
+}
+
+.full-screen-showcase__back:hover {
+  color: #fff8f0;
+}
+
+.full-screen-showcase__filter {
+  min-height: 38px;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(245, 238, 230, 0.38);
+  border-radius: 4px;
+  color: #f5eee6;
+  background: rgba(21, 16, 13, 0.55);
+  font: inherit;
+  font-size: 0.85rem;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.full-screen-showcase__filter:hover,
+.full-screen-showcase__filter.is-active {
+  border-color: #d89e68;
+  background: #d89e68;
+  color: #15100d;
+}
+
+.full-screen-showcase__eyebrow {
+  margin-bottom: 0.7rem;
+  color: #e6b27f;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.full-screen-showcase__eyebrow span {
+  padding: 0 0.3rem;
+  color: #c9bcaf;
+}
+
+.full-screen-showcase__badge {
+  display: inline-flex;
+  margin-bottom: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid rgba(216, 158, 104, 0.65);
+  border-radius: 4px;
+  background: rgba(21, 16, 13, 0.55);
+  color: #f0c49a;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.full-screen-showcase__copy h1 {
+  max-width: 740px;
+  margin-bottom: 1rem;
+  color: #fff8f0;
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  line-height: 1.08;
+}
+
+.full-screen-showcase__description {
+  max-width: 620px;
+  color: #e4d7ca;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.full-screen-showcase__metadata {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 1.2rem;
+  color: #f0c49a;
+  font-size: 0.9rem;
+}
+
+.full-screen-showcase__separator {
+  color: rgba(245, 238, 230, 0.6);
+}
+
+.full-screen-showcase__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.6rem;
+}
+
+.full-screen-showcase__save,
+.full-screen-showcase__arrow {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(245, 238, 230, 0.45);
+  border-radius: 50%;
+  background: rgba(21, 16, 13, 0.7);
+  color: #f5eee6;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.full-screen-showcase__save:hover,
+.full-screen-showcase__arrow:hover {
+  border-color: #d89e68;
+  background: #d89e68;
+  color: #15100d;
+}
+
+.full-screen-showcase__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.full-screen-showcase__navigation,
+.full-screen-showcase__indicators {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.full-screen-showcase__counter {
+  min-width: 3.5rem;
+  color: #f5eee6;
+  font-family: monospace;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.full-screen-showcase__indicator {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: rgba(245, 238, 230, 0.56);
+  transition: width 160ms ease, border-radius 160ms ease, background-color 160ms ease;
+}
+
+.full-screen-showcase__indicator.is-active {
+  width: 26px;
+  border-radius: 8px;
+  background: #d89e68;
+}
+
+@keyframes showcase-image-enter {
+  from { opacity: 0.55; }
+  to { opacity: 1; }
+}
+
+@keyframes showcase-copy-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .my-trip-itinerary-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .full-screen-showcase__layout {
+    padding: 1.5rem 1.25rem 1.5rem;
+  }
+
+  .full-screen-showcase__overlay {
+    background:
+      linear-gradient(90deg, rgba(15, 11, 9, 0.82), rgba(15, 11, 9, 0.34)),
+      linear-gradient(0deg, rgba(15, 11, 9, 0.86), transparent 70%);
+  }
+
+  .full-screen-showcase__copy h1 {
+    font-size: 2.5rem;
+  }
+
+  .full-screen-showcase__filters {
+    gap: 0.4rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .full-screen-showcase__filter {
+    min-height: 34px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.78rem;
+  }
+
+  .full-screen-showcase__controls {
+    align-items: flex-end;
+  }
+
+  .full-screen-showcase__indicators {
+    max-width: 55%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .my-trip-itinerary-card {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .my-trip-itinerary-card > img {
+    width: 100%;
+    height: 180px;
+  }
+}
+
 /* Heritage Badges */
 .badge {
   display: inline-flex;

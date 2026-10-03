@@ -142,10 +142,10 @@ export const Footer: React.FC = () => {
               Interactive Features
             </h4>
             <p style={{ fontSize: '0.875rem', lineHeight: 1.5, color: '#c9bcaf', marginBottom: '0.85rem' }}>
-              🎧 <strong>Listen to History:</strong> Built-in voice storyteller with chapter navigation and adjustable playback speeds.
+              <strong>Listen to History:</strong> Built-in voice storyteller with chapter navigation and adjustable playback speeds.
             </p>
             <p style={{ fontSize: '0.875rem', lineHeight: 1.5, color: '#c9bcaf' }}>
-              📸 <strong>Then & Now:</strong> Interactive split-slider comparing verified historical paintings and photographs with present-day Pune.
+              <strong>Then & Now:</strong> Interactive split-slider comparing verified historical paintings and photographs with present-day Pune.
             </p>
           </div>
         </div>

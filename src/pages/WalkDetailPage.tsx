@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import {
   ArrowLeft,
   CheckCircle2,
+  Check,
   Navigation,
   Headphones,
   ChevronRight,
@@ -53,7 +54,7 @@ export const WalkDetailPage: React.FC = () => {
             colors: ['#5fa874', '#c28b5b', '#f5eee6']
           });
         } catch {}
-        showToast(`🎉 Congratulations! You have completed the entire ${walk.title}!`, 'success');
+        showToast(`Congratulations! You have completed the entire ${walk.title}!`, 'success');
       } else {
         showToast(`Completed stop: ${currentStop.name}`, 'info');
       }
@@ -357,7 +358,7 @@ export const WalkDetailPage: React.FC = () => {
                   }}
                 >
                   <CheckCircle2 size={16} />
-                  {completedStops.includes(currentStop.id) ? 'Completed ✓' : 'Mark Stop Completed'}
+                  {completedStops.includes(currentStop.id) ? 'Completed' : 'Mark Stop Completed'}
                 </button>
               </div>
             </div>
@@ -489,7 +490,7 @@ export const WalkDetailPage: React.FC = () => {
                       flexShrink: 0
                     }}
                   >
-                    {isDone ? '✓' : index + 1}
+                    {isDone ? <Check size={16} /> : index + 1}
                   </div>
 
                   <div style={{ flex: 1 }}>
@@ -571,7 +572,7 @@ export const WalkDetailPage: React.FC = () => {
               color: '#c9bcaf'
             }}
           >
-            🟢 Green line indicates walking path. Numbers indicate walking stops along the trail.
+            Green line indicates walking path. Numbers indicate walking stops along the trail.
           </div>
         </div>
       </div>

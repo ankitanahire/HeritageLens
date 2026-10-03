@@ -73,7 +73,7 @@ export const ThenNowSlider: React.FC<ThenNowProps> = ({
               gap: '0.5rem'
             }}
           >
-            <span>📸</span> Then & Now: {title}
+            Then & Now: {title}
           </h3>
 
           {/* Quick presets */}
