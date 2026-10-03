@@ -26,22 +26,23 @@ interface MyTripPageProps {
 
 const walkStops = WALKS.flatMap((walk) => walk.stops);
 
+const sameItemKey = (left: string, right: string | undefined): boolean =>
+  !!right && left.trim().toLowerCase() === right.trim().toLowerCase();
+
 const getItineraryImage = (item: ItineraryItem): string => {
-  if (item.type === 'monument') {
-    return MONUMENTS.find((monument) => monument.id === item.placeId)?.heroImage
-      ?? walkStops.find((stop) => stop.id === item.placeId)?.image
-      ?? item.image;
-  }
-
-  if (item.type === 'experience') {
-    return EXPERIENCES.find((experience) => experience.id === item.placeId)?.image ?? item.image;
-  }
-
-  if (item.type === 'walk') {
-    return WALKS.find((walk) => walk.id === item.placeId)?.image ?? item.image;
-  }
-
-  return item.image;
+  return MONUMENTS.find((monument) =>
+    sameItemKey(monument.id, item.placeId) || sameItemKey(monument.name, item.title)
+  )?.heroImage
+    ?? EXPERIENCES.find((experience) =>
+      sameItemKey(experience.id, item.placeId) || sameItemKey(experience.title, item.title)
+    )?.image
+    ?? WALKS.find((walk) =>
+      sameItemKey(walk.id, item.placeId) || sameItemKey(walk.title, item.title)
+    )?.image
+    ?? walkStops.find((stop) =>
+      sameItemKey(stop.id, item.placeId) || sameItemKey(stop.name, item.title)
+    )?.image
+    ?? item.image;
 };
 
 export const MyTripPage: React.FC<MyTripPageProps> = ({ onOpenBuildTrip }) => {
