@@ -33,8 +33,8 @@ export const MapPage: React.FC = () => {
     );
   };
 
-  // Filter places based on search input
-  const filteredMonuments = useMemo(() => {
+  // Find places based on search input (only used for auto-selection now, so we don't hide other places on the map)
+  const searchedMonuments = useMemo(() => {
     if (!searchQuery.trim()) return MONUMENTS;
     const q = searchQuery.toLowerCase().trim();
     return MONUMENTS.filter(
@@ -44,6 +44,34 @@ export const MapPage: React.FC = () => {
         m.category.toLowerCase().includes(q)
     );
   }, [searchQuery]);
+
+  const searchedWalks = useMemo(() => {
+    if (!searchQuery.trim()) return WALKS;
+    const q = searchQuery.toLowerCase().trim();
+    return WALKS.filter((w) => w.title?.toLowerCase().includes(q) || w.theme?.toLowerCase().includes(q));
+  }, [searchQuery]);
+
+  const searchedExperiences = useMemo(() => {
+    if (!searchQuery.trim()) return EXPERIENCES;
+    const q = searchQuery.toLowerCase().trim();
+    return EXPERIENCES.filter((e) => e.title?.toLowerCase().includes(q) || e.category?.toLowerCase().includes(q));
+  }, [searchQuery]);
+
+  // Automatically select the first match when search query changes
+  React.useEffect(() => {
+    if (searchQuery.trim()) {
+      if (searchedMonuments.length > 0 && showHeritage) {
+        setSelectedPlace(searchedMonuments[0]);
+        setSelectedType('monument');
+      } else if (searchedWalks.length > 0 && showWalks) {
+        setSelectedPlace(searchedWalks[0]);
+        setSelectedType('walk');
+      } else if (searchedExperiences.length > 0 && showExperiences) {
+        setSelectedPlace(searchedExperiences[0]);
+        setSelectedType('experience');
+      }
+    }
+  }, [searchQuery, searchedMonuments, searchedWalks, searchedExperiences, showHeritage, showWalks, showExperiences]);
 
   const handleSelectMarker = (place: any, type: 'monument' | 'walk' | 'experience') => {
     setSelectedPlace(place);
@@ -198,7 +226,7 @@ export const MapPage: React.FC = () => {
                     boxShadow: '0 0 6px #d9884e'
                   }}
                 />
-                <span>Heritage Places ({filteredMonuments.length})</span>
+                <span>Heritage Places ({MONUMENTS.length})</span>
               </label>
 
               <label
@@ -303,7 +331,7 @@ export const MapPage: React.FC = () => {
         {/* Center / Right Map Area with Floating Card */}
         <div style={{ position: 'relative', height: '100%', minHeight: '600px' }}>
           <MapView
-            monuments={filteredMonuments}
+            monuments={MONUMENTS}
             walks={WALKS}
             experiences={EXPERIENCES}
             selectedPlace={selectedPlace}
