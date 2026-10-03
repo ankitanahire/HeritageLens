@@ -6,7 +6,6 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Toast } from './components/Toast';
 import { SearchModal } from './components/SearchModal';
-import { ProfileModal } from './components/ProfileModal';
 import { BuildTripModal } from './components/BuildTripModal';
 
 import { HomePage } from './pages/HomePage';
@@ -33,7 +32,6 @@ const ScrollToTop: React.FC = () => {
 export function App() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchInitialQuery, setSearchInitialQuery] = useState('');
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isBuildTripOpen, setIsBuildTripOpen] = useState(false);
 
   const handleOpenSearchWithQuery = (query: string) => {
@@ -52,7 +50,6 @@ export function App() {
               setSearchInitialQuery('');
               setIsSearchOpen(true);
             }}
-            onOpenProfile={() => setIsProfileOpen(true)}
           />
 
           {/* Main Application Routes */}
@@ -89,11 +86,6 @@ export function App() {
             isOpen={isSearchOpen}
             onClose={() => setIsSearchOpen(false)}
             initialQuery={searchInitialQuery}
-          />
-
-          <ProfileModal
-            isOpen={isProfileOpen}
-            onClose={() => setIsProfileOpen(false)}
           />
 
           <BuildTripModal

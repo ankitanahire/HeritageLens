@@ -5,10 +5,9 @@ import { useSaved } from '../context/SavedContext';
 
 interface NavbarProps {
   onOpenSearch: () => void;
-  onOpenProfile: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch, onOpenProfile }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { savedIds } = useSaved();
   const navigate = useNavigate();
@@ -161,27 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch, onOpenProfile }) =
             <Search size={18} />
           </button>
 
-          {/* Profile Button */}
-          <button
-            onClick={onOpenProfile}
-            aria-label="User Profile"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '2.5rem',
-              height: '2.5rem',
-              borderRadius: '50%',
-              backgroundColor: 'rgba(194, 139, 91, 0.2)',
-              border: '1px solid #c28b5b',
-              color: '#f5eee6',
-              overflow: 'hidden',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease'
-            }}
-          >
-            <User size={18} color="#f5eee6" />
-          </button>
+
 
           {/* Mobile Menu Hamburger */}
           <button

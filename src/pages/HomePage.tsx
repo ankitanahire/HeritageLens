@@ -78,19 +78,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenBuildTrip, onOpenSearc
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              filter: 'brightness(0.72) contrast(1.05)',
+              filter: 'brightness(1) contrast(1.05)',
               transition: 'opacity 0.6s ease'
             }}
           />
 
-          {/* Deep Dark Brown Vignette & Gradients matching design reference */}
+          {/* Lighter Vignette & Gradients for better visibility */}
           <div
             style={{
               position: 'absolute',
               inset: 0,
               background: `
-                radial-gradient(ellipse 90% 70% at 30% 40%, rgba(21, 16, 13, 0.4), rgba(21, 16, 13, 0.95) 90%),
-                linear-gradient(to bottom, rgba(21, 16, 13, 0.6) 0%, transparent 40%, rgba(21, 16, 13, 0.95) 95%)
+                radial-gradient(ellipse 90% 70% at 30% 40%, rgba(21, 16, 13, 0.1), rgba(21, 16, 13, 0.7) 90%),
+                linear-gradient(to bottom, rgba(21, 16, 13, 0.3) 0%, transparent 40%, rgba(21, 16, 13, 0.85) 95%)
               `
             }}
           />

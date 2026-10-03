@@ -14,7 +14,7 @@ export const MONUMENTS: Monument[] = [
     estimatedTime: '1 – 2 hours',
     latitude: 18.5191,
     longitude: 73.8555,
-    heroImage: '/images/monuments/shaniwar-wada-hero.jpg',
+    heroImage: '/images/monuments/shaniwar-wada-night.png',
     gallery: [
       '/images/monuments/shaniwar-wada-hero.jpg',
       '/images/monuments/shaniwar-wada-night.jpg',
@@ -85,9 +85,9 @@ export const MONUMENTS: Monument[] = [
     estimatedTime: '45 mins – 1 hour',
     latitude: 18.5135,
     longitude: 73.8530,
-    heroImage: '/images/monuments/vishrambaug-wada.jpg',
+    heroImage: '/images/monuments/vishrambaug-wada.png',
     gallery: [
-      '/images/monuments/vishrambaug-wada.jpg',
+      '/images/monuments/vishrambaug-wada.png',
       '/images/walks/wada-trail.jpg'
     ],
     history: {
@@ -104,7 +104,7 @@ export const MONUMENTS: Monument[] = [
     },
     thenNow: {
       thenImage: '/images/walks/wada-trail.jpg',
-      nowImage: '/images/monuments/vishrambaug-wada.jpg',
+      nowImage: '/images/monuments/vishrambaug-wada.png',
       thenLabel: 'Historic Woodwork Detail',
       nowLabel: 'Restored Exterior Facade',
       description: 'Observe the intricate hand-carved teakwood columns preserved from 1807 alongside the restored exterior facade on Bajirao Road.'
