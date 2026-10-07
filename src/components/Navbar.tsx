@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { Search, User, Menu, X, Heart } from 'lucide-react';
+import { Search, Menu, X, Heart } from 'lucide-react';
 import { useSaved } from '../context/SavedContext';
 
 interface NavbarProps {

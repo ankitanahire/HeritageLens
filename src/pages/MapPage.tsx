@@ -48,7 +48,7 @@ export const MapPage: React.FC = () => {
   const searchedWalks = useMemo(() => {
     if (!searchQuery.trim()) return WALKS;
     const q = searchQuery.toLowerCase().trim();
-    return WALKS.filter((w) => w.title?.toLowerCase().includes(q) || w.theme?.toLowerCase().includes(q));
+    return WALKS.filter((w) => w.title?.toLowerCase().includes(q) || w.category?.toLowerCase().includes(q));
   }, [searchQuery]);
 
   const searchedExperiences = useMemo(() => {
