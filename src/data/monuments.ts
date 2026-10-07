@@ -39,7 +39,7 @@ export const MONUMENTS: Monument[] = [
       nowImage: '/images/monuments/shaniwar-wada-hero.jpg',
       thenLabel: '1820 Historical Painting & Lithograph',
       nowLabel: 'Conserved Delhi Gate & Stone Bastions',
-      description: 'Historical records from 1820 document the multi-tiered wooden balconies and seven-storey residences inside the fortified curtain walls before the devastating 1828 fire.'
+      description: 'Compare how the multi-tiered wooden balconies and seven-storey palace towers appeared before the catastrophic 1828 fire with the ASI-conserved stone bastions and spiked Delhi Gate today.'
     },
     audioNarration: {
       title: 'The Fortress of the Peshwas: Shaniwar Wada',
@@ -105,11 +105,11 @@ export const MONUMENTS: Monument[] = [
       ]
     },
     thenNow: {
-      thenImage: '/images/walks/wada-trail.png',
+      thenImage: '/images/monuments/vishrambaug-wada-then.jpg',
       nowImage: '/images/monuments/vishrambaug-wada.png',
-      thenLabel: 'Historic Carved Teakwood Balcony',
-      nowLabel: 'Restored Heritage Facade on Bajirao Road',
-      description: 'The distinctive warm ochre and terracotta facade with hand-carved teakwood pillars on Bajirao Road has been painstakingly conserved to its 1807 glory.'
+      thenLabel: 'Pre-2003 Municipal & Post Office Era',
+      nowLabel: '2004 PMC & INTACH Restored Facade',
+      description: 'Examine the weathered, peeling facade and unpainted timber pillars during its use as a municipal post office contrasted with the restored terracotta finish, Suru cypress pillars, and Meghdambari balcony today.'
     },
     audioNarration: {
       title: 'Timber Mastery: Vishrambaug Wada',
@@ -165,6 +165,13 @@ export const MONUMENTS: Monument[] = [
         { year: '1663', event: 'On April 5, Shivaji Maharaj and 400 soldiers execute a daring night raid on Mughal viceroy Shaista Khan inside the palace.' },
         { year: '1988', event: 'PMC inaugurates the reconstructed Lal Mahal memorial with statues and historic murals.' }
       ]
+    },
+    thenNow: {
+      thenImage: '/images/monuments/lal-mahal-then.jpg',
+      nowImage: '/images/monuments/lal-mahal.jpg',
+      thenLabel: 'Pre-1988 Archaeological Excavation Site',
+      nowLabel: '1988 Reconstructed Memorial Palace',
+      description: 'Compare the exposed brick-and-stone foundations and historic boundary ruins of the original 1630 wada with the red-stone cultural memorial and galleries inaugurated by PMC in 1988.'
     },
     audioNarration: {
       title: 'Cradle of Swarajya: Lal Mahal',
@@ -224,6 +231,13 @@ export const MONUMENTS: Monument[] = [
         { year: '2003', event: 'On March 3, officially notified as a "Monument of National Importance" by the Archaeological Survey of India.' }
       ]
     },
+    thenNow: {
+      thenImage: '/images/monuments/aga-khan-palace-then.jpg',
+      nowImage: '/images/monuments/aga-khan-palace.jpg',
+      thenLabel: '1944 Quit India Detention & Samadhis',
+      nowLabel: 'ASI National Monument & Marble Memorials',
+      description: 'View Mahatma Gandhi praying at the original raw earth samadhis following the internment of Kasturba Gandhi and Mahadev Desai, contrasted with the conserved marble samadhis and manicured 19-acre Italianate grounds today.'
+    },
     audioNarration: {
       title: 'Sanctuary of Freedom: Aga Khan Palace',
       totalDuration: '03:30',
@@ -277,6 +291,13 @@ export const MONUMENTS: Monument[] = [
         { year: '1893', event: 'Lokmanya Bal Gangadhar Tilak standardizes the Sarvajanik Ganeshotsav protocol, awarding Kasba Ganapati the first position of honor.' },
         { year: 'Present', event: 'Every year, the ceremonial immersion parade on Laxmi Road begins only after the Kasba Ganapati chariot has passed.' }
       ]
+    },
+    thenNow: {
+      thenImage: '/images/monuments/kasba-ganpati-then.jpg',
+      nowImage: '/images/monuments/kasba-ganpati.png',
+      thenLabel: 'Early 20th-Century Wooden Mandap',
+      nowLabel: 'Conserved Gramdaivat Heritage Temple',
+      description: 'Observe the historic carved wooden Sabha Mandap and devotees in traditional Puneri attire contrasted with the beautifully conserved sanctum and illuminated heritage temple complex today.'
     },
     audioNarration: {
       title: 'The Guardian of Pune: Kasba Ganapati',
@@ -333,6 +354,13 @@ export const MONUMENTS: Monument[] = [
         { year: '2026', event: 'Multi-storey National Memorial structure completed by Pune Municipal Corporation.' }
       ]
     },
+    thenNow: {
+      thenImage: '/images/monuments/bhide-wada-then.jpg',
+      nowImage: '/images/monuments/bhide-wada.jpg',
+      thenLabel: '1848 Historic Wada in Budhwar Peth',
+      nowLabel: '2024–2026 PMC National Memorial',
+      description: 'Contrast the original, fragile 19th-century timber wada where Savitribai and Jyotirao Phule founded India’s first girls’ school with the modern multi-storey National Memorial structure honoring the pioneer reformers.'
+    },
     audioNarration: {
       title: 'Dawn of Equality: Bhide Wada',
       totalDuration: '03:00',
@@ -388,6 +416,13 @@ export const MONUMENTS: Monument[] = [
         { year: '1906', event: 'Lokmanya Tilak builds a mountain retreat bungalow at Sinhagad, where he met Mahatma Gandhi and Subhas Chandra Bose.' }
       ]
     },
+    thenNow: {
+      thenImage: '/images/monuments/sinhagad-fort-then.jpg',
+      nowImage: '/images/monuments/sinhagad-fort.png',
+      thenLabel: '1880s Colonial Survey & Ruined Gate',
+      nowLabel: 'Conserved Kalyan Darwaza & Bastions',
+      description: 'Compare the breached stone ramparts and unpaved, rugged cliff trails documented in 1880s colonial surveys with the restored Kalyan Darwaza stone arches and protected tourist viewpoints today.'
+    },
     audioNarration: {
       title: 'Echo of the Lion: Sinhagad Fort',
       totalDuration: '03:40',
@@ -442,6 +477,13 @@ export const MONUMENTS: Monument[] = [
         { year: 'Present', event: 'Welcomes millions of pilgrims annually during the 10-day Ganeshotsav festival, managing extensive social welfare initiatives.' }
       ]
     },
+    thenNow: {
+      thenImage: '/images/monuments/dagdusheth-ganapati-then.jpg',
+      nowImage: '/images/monuments/dagdusheth-ganapati.jpg',
+      thenLabel: '1890s Consecration During Plague Era',
+      nowLabel: 'Modern Gilded Marble Temple',
+      description: 'Witness the original street sanctum consecrated in 1893 by Dagdusheth Halwai and Lokmanya Tilak during the plague epidemic contrasted with today’s magnificent gilded marble temple adorned in gold ornaments.'
+    },
     audioNarration: {
       title: 'Devotion and Unity: Dagdusheth Ganapati',
       totalDuration: '02:50',
@@ -495,6 +537,13 @@ export const MONUMENTS: Monument[] = [
         { year: 'c. 800 CE', event: 'Excavation halted intentionally before completion, leaving raw stone chisel marks and fault lines visible today.' },
         { year: '1960', event: 'Notified as a Protected Monument of National Importance by the Archaeological Survey of India (ASI).' }
       ]
+    },
+    thenNow: {
+      thenImage: '/images/monuments/pataleshwar-cave-then.jpg',
+      nowImage: '/images/monuments/pataleshwar-cave.jpg',
+      thenLabel: '1880 Archaeological Survey Lithograph',
+      nowLabel: 'ASI Conserved Monolithic Basalt Pavilion',
+      description: 'See the 8th-century monolithic circular Nandi Mandapa half-buried in earth and wild shrubs during late 19th-century surveys contrasted with the cleaned, protected basalt columns and rock sanctums under ASI today.'
     },
     audioNarration: {
       title: 'Monolith from the Bedrock: Pataleshwar',
